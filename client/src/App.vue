@@ -1,14 +1,22 @@
 <template>
 
+<router-view></router-view>
+
 </template>
 
 <script>
-
+import config from './config';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+ 
+  }, 
+  computed: {
+    backendUrl() {
+      return config.backendUrl;
+    },
+  },
+
 }
 </script>
 
