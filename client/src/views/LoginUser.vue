@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div >
         <section class="vh-100">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center  h-100">
@@ -34,7 +34,7 @@
 
                                   
                                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                <button @click="login" type="button" class="btn btn-primary btn-lg"
+                                                <button @click="login" type="button" class="btn btn-primary btn-lg" style="background-color: cyan !important;border: none; color: #353434;"
                                                     :disabled="!isFormValid">
                                                     Login
                                                 </button>
