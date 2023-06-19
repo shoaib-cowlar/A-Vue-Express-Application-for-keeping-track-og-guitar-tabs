@@ -1,8 +1,29 @@
-module.exports = (sequelize,DataTypes)=>
-sequelize.define("User",{
-    email:{
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    "User",
+    {
+      firstName: {
         type: DataTypes.STRING,
-        unique: true
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true,
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    password: DataTypes.STRING
-})
+    {
+      tableName: "Users",
+    }
+  );

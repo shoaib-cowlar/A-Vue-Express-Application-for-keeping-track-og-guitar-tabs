@@ -16,6 +16,9 @@ export default {
       return config.backendUrl;
     },
   },
+  mounted(){
+    
+  }
 
 }
 </script>
@@ -28,5 +31,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.toolbar_title {
+  color: white;
+}
+.btn__content {
+  color: white;
 }
 </style>

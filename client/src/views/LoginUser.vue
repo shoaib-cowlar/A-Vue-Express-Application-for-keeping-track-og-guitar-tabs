@@ -1,5 +1,5 @@
 <template>
-    <div>
+     <div>
         <section class="vh-100">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center  h-100">
@@ -9,27 +9,10 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                         <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                                            Sign up
+                                            Login Here
                                         </p>
 
                                         <form class="mx-1 mx-md-4" @submit.prevent="register">
-                                            <div class="mb-4">
-                                                <div class="form-outline flex-fill text-left mb-0">
-                                                    <label class="form-label" for="form3Example1c">FirstName :</label>
-                                                    <input type="text" id="form3Example1c" class="form-control"
-                                                        v-model="firstName" required />
-
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4">
-                                                <div class="form-outline flex-fill text-left mb-0">
-                                                    <label class="form-label" for="form3Example2c">LastName :</label>
-                                                    <input type="text" id="form3Example2c" class="form-control"
-                                                        v-model="lastName" required />
-
-                                                </div>
-                                            </div>
 
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
@@ -49,20 +32,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="mb-4">
-                                                <div class="form-outline flex-fill text-left mb-0">
-                                                    <label class="form-label" for="form3Example4cd">Repeat your password
-                                                        :</label>
-                                                    <input type="password" id="form3Example4cd" class="form-control"
-                                                        v-model="repeatPassword" required />
-
-                                                </div>
-                                            </div>
-
+                                  
                                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                <button @click="register" type="button" class="btn btn-primary btn-lg"
+                                                <button @click="login" type="button" class="btn btn-primary btn-lg"
                                                     :disabled="!isFormValid">
-                                                    Register
+                                                    Login
                                                 </button>
                                             </div>
                                         </form>
@@ -82,22 +56,20 @@
 </template>
 
 <script>
-import AuthenticationService from "@/services/AuthenticationService";
+import AuthenticationService from '@/services/AuthenticationService';
+
 
 export default {
-    name: "RegisterUser",
+    name: "LoginUser",
     data() {
         return {
-            firstName: "",
-            lastName: "",
             email: "",
             password: "",
-            repeatPassword: "",
         };
     },
     computed: {
         isFormValid() {
-            return this.firstName && this.lastName && this.email && this.password && this.repeatPassword;
+            return  this.email && this.password 
         },
     },
     methods: {
@@ -105,32 +77,20 @@ export default {
             const re = /^[^@]+@[^.]+\.[cC][oO][mM]$/;
             return re.test(email);
         },
-        validatePassword(pass1,pass2){
-            if (pass1 !== pass2) {
-                    return false;
-                }else{
-                    return true;
-                }
-        },
-        async register() {
+
+        async login() {
             // Check email validity
             if (!this.validateEmail(this.email)) {
-                alert("Invalid email address.  The format should be 'example@example.com' ");
+                alert("Invalid email address. The format should be 'example@example.com' ");
                 return;
             }
-            // Check if passwords match
-            if (!this.validatePassword(this.password,this.repeatPassword)) {
-                alert("Passwords do not match");
-                return;
-            }
+      
             try {
-                const response = await AuthenticationService.register({
-                    firstName: this.firstName,
-                    lastName: this.lastName,
+                await AuthenticationService.login({
                     email: this.email,
                     password: this.password,
                 });
-                alert(response.data.message)
+                alert("successfully Logged in")
             } catch (error) {
                 console.log(error)
                 alert(error.response.data.error)
@@ -138,4 +98,5 @@ export default {
         },
     },
 };
+
 </script>

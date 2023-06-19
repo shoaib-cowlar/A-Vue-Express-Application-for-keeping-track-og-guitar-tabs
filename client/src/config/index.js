@@ -1,5 +1,5 @@
 // config/index.js
 export default {
-    backendUrl: process.env.BASE_URI || 'http://localhost:8001',
+    backendUrl: process.env.VUE_APP_BASE_URI || 'http://localhost:8002',
   };
   
