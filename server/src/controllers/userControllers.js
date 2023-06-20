@@ -1,5 +1,14 @@
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("../config");
+
+function jwtSignUser (user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7
+  return jwt.sign(user,config.authentication.jwtSecret, {
+    expiresIn : ONE_WEEK
+  })
+}
 
 exports.registerUser = async (req, res) => {
   try {
@@ -38,14 +47,14 @@ exports.loginUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await user.comparePassword(password)
 
     if (!passwordMatch) {
       return res.status(403).json({ error: "Invalid password" });
     }
 
     const { password: _, ...userDetails } = user.toJSON();
-    res.status(200).json({ message: "Login successful", user: userDetails });
+    res.status(200).json({ message: "Login successful", user: userDetails , token: jwtSignUser(userDetails) });
   } catch (err) {
     res.status(422).json({ error: err.message });
   }
