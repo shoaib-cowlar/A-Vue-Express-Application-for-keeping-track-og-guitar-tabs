@@ -25,12 +25,6 @@ export default {
         navigateTo(route){
             this.$router.push(route)
         }
-    },
-    mounted() {
-    // Perform actions on component mount
-    // You can access the computed properties and perform any necessary operations here
-    console.log('Component mounted');
-    console.log('isUserLoggedIn:', this.isUserLoggedIn);
     }
 };
 </script>
