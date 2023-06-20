@@ -17,7 +17,7 @@
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
                                                     <label class="form-label" for="form3Example3c">Your Email :</label>
-                                                    <input type="email" id="form3Example3c" class="form-control"
+                                                    <input type="email" id="form3Example3c" class="form-control" 
                                                         v-model="email" required />
 
                                                 </div>
@@ -57,6 +57,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService';
+import { mapActions } from 'vuex';
 
 
 export default {
@@ -68,11 +69,13 @@ export default {
         };
     },
     computed: {
+        
         isFormValid() {
             return  this.email && this.password 
         },
     },
     methods: {
+        ...mapActions(['setToken','setUser']),
         validateEmail(email) {
             const re = /^[^@]+@[^.]+\.[cC][oO][mM]$/;
             return re.test(email);
@@ -86,10 +89,12 @@ export default {
             }
       
             try {
-                await AuthenticationService.login({
+                const response = await AuthenticationService.login({
                     email: this.email,
                     password: this.password,
                 });
+                this.setToken(response.data.token) 
+                this.setUser(response.data.user) 
                 alert("successfully Logged in")
             } catch (error) {
                 console.log(error)
