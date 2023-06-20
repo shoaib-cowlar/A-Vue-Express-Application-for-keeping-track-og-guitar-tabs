@@ -4,10 +4,11 @@ POST http://localhost:8002/api/users/register
 Content-Type: application/json
 
 {
-    "firstName": "John",
+  "firstName": "John",
   "lastName": "Doe",
   "email": "johndoe@example.com",
   "password": "password123"
+  
 }
 ### User Login ###
 
