@@ -3,7 +3,7 @@
         <v-toolbar-title class="mr-5">
            <span @click="navigateTo({name: 'register'})" class="home"> Tab Tracker</span>
         </v-toolbar-title>
-        <v-toolbar-items>
+        <v-toolbar-items v-if="!isUserLoggedIn">
             <v-btn flat dark>Browser</v-btn>
             <v-btn flat dark @click="navigateTo({name: 'register'})">Signup</v-btn>
         </v-toolbar-items>
@@ -11,14 +11,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 
 export default {
     name: "PageHeader",
+    computed :{
+        ...mapState({
+            isUserLoggedIn: state => state.users.isUserLoggedIn
+        }),
+    },  
     methods:{
         navigateTo(route){
             this.$router.push(route)
         }
+    },
+    mounted() {
+    // Perform actions on component mount
+    // You can access the computed properties and perform any necessary operations here
+    console.log('Component mounted');
+    console.log('isUserLoggedIn:', this.isUserLoggedIn);
     }
 };
 </script>
