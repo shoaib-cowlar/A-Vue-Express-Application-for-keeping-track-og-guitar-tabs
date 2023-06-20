@@ -16,7 +16,7 @@
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
                                                     <label class="form-label" for="form3Example1c">FirstName :</label>
-                                                    <input type="text" id="form3Example1c" class="form-control"
+                                                    <input type="text" id="form3Example1c" class="form-control" autocomplete="given-name"
                                                         v-model="firstName" required />
 
                                                 </div>
@@ -25,7 +25,7 @@
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
                                                     <label class="form-label" for="form3Example2c">LastName :</label>
-                                                    <input type="text" id="form3Example2c" class="form-control"
+                                                    <input type="text" id="form3Example2c" class="form-control" autocomplete="family-name"
                                                         v-model="lastName" required />
 
                                                 </div>
@@ -34,8 +34,8 @@
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
                                                     <label class="form-label" for="form3Example3c">Your Email :</label>
-                                                    <input type="email" id="form3Example3c" class="form-control"
-                                                        v-model="email" required />
+                                                    <input type="email" id="form3Example3c" class="form-control" autocomplete="email"
+                                                        v-model="email" required /> 
 
                                                 </div>
                                             </div>
@@ -43,7 +43,7 @@
                                             <div class="mb-4">
                                                 <div class="form-outline flex-fill text-left mb-0">
                                                     <label class="form-label" for="form3Example4c">Password :</label>
-                                                    <input type="password" id="form3Example4c" class="form-control"
+                                                    <input type="password" id="form3Example4c" class="form-control" autocomplete="new-password"
                                                         v-model="password" required />
 
                                                 </div>
